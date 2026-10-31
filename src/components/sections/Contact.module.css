@@ -1,0 +1,479 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(96px, 11vw, 156px) 0 clamp(100px, 12vw, 168px);
+  border-top: 1px solid rgb(38 54 55 / 65%);
+  background:
+    radial-gradient(ellipse at 7% 13%, rgb(20 35 36 / 52%), transparent 35%),
+    var(--background-secondary);
+}
+
+.section::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(117 184 176 / 36%), transparent);
+  content: "";
+}
+
+.inner {
+  display: grid;
+  width: min(100% - 56px, 1320px);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  align-items: start;
+  gap: clamp(48px, 8vw, 112px);
+}
+
+.intro {
+  padding-top: 5px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 27px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.eyebrowLine {
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.title {
+  max-width: 630px;
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--type-heading);
+  font-size: clamp(43px, 5.7vw, 76px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.99;
+}
+
+.title span {
+  color: var(--accent);
+}
+
+.description {
+  max-width: 500px;
+  margin: 25px 0 0;
+  color: var(--foreground-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.channels {
+  display: grid;
+  gap: 2px;
+  margin-top: clamp(40px, 6vw, 68px);
+  border-top: 1px solid var(--border);
+}
+
+.channel {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  text-decoration: none;
+}
+
+.channelIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgb(117 184 176 / 25%);
+  border-radius: 11px 3px 11px 3px;
+  color: var(--accent);
+}
+
+.channelCopy {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.channelLabel {
+  color: var(--foreground-muted);
+  font-family: var(--type-mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.channelValue {
+  overflow: hidden;
+  color: var(--foreground);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channelArrow {
+  color: var(--foreground-muted);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.channelActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.channelAction {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgb(117 184 176 / 24%);
+  border-radius: 50%;
+  color: var(--foreground-muted);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.channelAction:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: rgb(117 184 176 / 10%);
+  color: var(--accent);
+}
+
+.channelAction:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+a.channel:hover .channelArrow {
+  color: var(--accent);
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.formPanel {
+  min-width: 0;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid rgb(137 155 153 / 20%);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgb(117 184 176 / 7%), transparent 45%),
+    rgb(8 13 14 / 68%);
+  box-shadow:
+    0 28px 70px rgb(0 0 0 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 3%);
+}
+
+.formHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.formEyebrow,
+.formIndex {
+  color: var(--foreground-muted);
+  font-family: var(--type-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.formEyebrow {
+  color: var(--accent);
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 21px 16px;
+}
+
+.field {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 9px;
+}
+
+.fieldHalf {
+  grid-column: span 1;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  color: var(--foreground);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.field label > span:not(.optional) {
+  color: var(--accent);
+}
+
+.optional {
+  color: var(--foreground-muted);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgb(137 155 153 / 25%);
+  border-radius: 9px;
+  outline: none;
+  background: rgb(20 35 36 / 55%);
+  color: var(--foreground);
+  font-family: var(--type-body);
+  font-size: 12px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.field input,
+.field select {
+  height: 46px;
+  padding: 0 13px;
+}
+
+.field select {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+.field select:invalid {
+  color: var(--foreground-muted);
+}
+
+.field textarea {
+  min-height: 120px;
+  padding: 12px 13px;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  background: rgb(20 35 36 / 76%);
+  box-shadow: 0 0 0 3px rgb(117 184 176 / 11%);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: #d98c83;
+}
+
+.error {
+  color: #e2a39b;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.formActions {
+  display: grid;
+  justify-items: start;
+  gap: 13px;
+  margin-top: 26px;
+}
+
+.submitButton,
+.editButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 19px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--background);
+  cursor: pointer;
+  font-family: var(--type-body);
+  font-size: 11px;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.submitButton:hover,
+.editButton:hover {
+  transform: translateY(-2px);
+  border-color: #a0d5ce;
+  background: #a0d5ce;
+}
+
+.submitButton:focus-visible,
+.editButton:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
+.deliveryNote {
+  max-width: 440px;
+  margin: 0;
+  color: var(--foreground-muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.successState {
+  display: grid;
+  min-height: 420px;
+  align-content: center;
+  justify-items: start;
+}
+
+.successIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgb(117 184 176 / 45%);
+  border-radius: 50%;
+  background: rgb(117 184 176 / 10%);
+  color: var(--accent);
+}
+
+.successState .formEyebrow {
+  margin: 25px 0 0;
+}
+
+.successState h3 {
+  margin: 12px 0 0;
+  color: var(--foreground);
+  font-family: var(--type-heading);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.successState > p:not(.formEyebrow) {
+  max-width: 440px;
+  margin: 12px 0 0;
+  color: var(--foreground-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.editButton {
+  margin-top: 25px;
+  background: transparent;
+  color: var(--foreground);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 38px;
+  }
+
+  .title {
+    font-size: clamp(42px, 6vw, 60px);
+  }
+}
+
+@media (max-width: 680px) {
+  .section {
+    padding-block: 82px 104px;
+  }
+
+  .inner {
+    width: min(100% - 40px, 560px);
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .title {
+    max-width: 540px;
+    font-size: clamp(42px, 10.5vw, 58px);
+  }
+
+  .description {
+    margin-top: 18px;
+    font-size: 13px;
+  }
+
+  .channels {
+    margin-top: 30px;
+  }
+
+  .formPanel {
+    padding: 23px 19px;
+  }
+
+  .formHeading {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 440px) {
+  .inner {
+    width: min(100% - 36px, 560px);
+  }
+
+  .fieldGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .fieldHalf,
+  .fieldFull {
+    grid-column: 1;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channelArrow,
+  .channelAction,
+  .field input,
+  .field select,
+  .field textarea,
+  .submitButton,
+  .editButton {
+    transition: none;
+  }
+}
