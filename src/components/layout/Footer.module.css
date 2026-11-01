@@ -119,28 +119,17 @@
 
 .wordmark {
   display: inline-flex;
+  width: 178px;
+  max-width: 100%;
   align-items: center;
-  gap: 12px;
-  color: var(--foreground);
-  font-family: var(--type-heading);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
   text-decoration: none;
 }
 
-.brandMark {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid rgb(117 184 176 / 65%);
-  border-radius: 11px 3px 11px 3px;
-  color: var(--accent);
-  font-family: var(--type-heading);
-  font-size: 17px;
-  font-weight: 600;
-  transform: rotate(-5deg);
+.wordmarkImage {
+  display: block;
+  width: 178px;
+  max-width: 100%;
+  height: auto;
 }
 
 .tagline {

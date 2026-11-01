@@ -73,32 +73,11 @@
   margin-top: clamp(46px, 8vw, 94px);
 }
 
-.signatureMark {
-  display: grid;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgb(117 184 176 / 52%);
-  border-radius: 12px 3px 12px 3px;
-  color: var(--accent);
-  font-family: var(--type-heading);
-  font-size: 18px;
-  font-weight: 600;
-  transform: rotate(-5deg);
-}
-
-.signatureRule {
-  width: clamp(24px, 5vw, 62px);
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-}
-
-.signatureLabel {
-  color: var(--foreground-muted);
-  font-family: var(--type-mono);
-  font-size: 8px;
-  letter-spacing: 0.12em;
+.signatureLogo {
+  display: block;
+  width: 178px;
+  max-width: 100%;
+  height: auto;
 }
 
 .content {

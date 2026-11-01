@@ -17,45 +17,17 @@
 
 .brand {
   display: inline-flex;
-  width: fit-content;
+  width: 178px;
+  max-width: 100%;
   align-items: center;
-  gap: 12px;
-  color: var(--foreground);
   text-decoration: none;
 }
 
-.brandMark {
-  display: grid;
-  width: 38px;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid var(--accent);
-  border-radius: 11px 3px 11px 3px;
-  color: var(--accent);
-  font-family: var(--type-heading);
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1;
-  transform: rotate(-5deg);
-}
-
-.brandName,
-.brandDescriptor {
+.brandImage {
   display: block;
-}
-
-.brandName {
-  font-family: var(--type-heading);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-}
-
-.brandDescriptor {
-  margin-top: 3px;
-  color: var(--foreground-muted);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  width: 178px;
+  max-width: 100%;
+  height: auto;
 }
 
 .desktopNav {

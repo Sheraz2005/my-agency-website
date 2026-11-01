@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Code2, Shapes, UserRound } from "lucide-react";
+import Image from "next/image";
 import styles from "./About.module.css";
 
 const principles = [
@@ -63,9 +64,13 @@ export default function About() {
             Good design gets attention. <span>Great experiences earn trust.</span>
           </h2>
           <div className={styles.signature} aria-hidden="true">
-            <span className={styles.signatureMark}>N</span>
-            <span className={styles.signatureRule} />
-            <span className={styles.signatureLabel}>NEXCRAFT / DIGITAL STUDIO</span>
+            <Image
+              className={styles.signatureLogo}
+              src="/images/brand/nexcraft-logo-transparent.png"
+              alt=""
+              width={178}
+              height={61}
+            />
           </div>
         </motion.div>
 

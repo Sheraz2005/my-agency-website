@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 
@@ -35,13 +36,14 @@ export default function Navbar() {
           aria-label="NEXCRAFT Digital Agency, home"
           onClick={() => setMenuOpen(false)}
         >
-          <span className={styles.brandMark} aria-hidden="true">
-            N
-          </span>
-          <span className={styles.brandText}>
-            <span className={styles.brandName}>NEXCRAFT</span>
-            <span className={styles.brandDescriptor}>Digital Agency</span>
-          </span>
+          <Image
+            className={styles.brandImage}
+            src="/images/brand/nexcraft-logo.png"
+            alt=""
+            width={178}
+            height={61}
+            sizes="178px"
+          />
         </a>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">

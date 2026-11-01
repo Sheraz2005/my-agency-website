@@ -1,5 +1,6 @@
 import { ArrowUp, ArrowUpRight, MessageCircle, Phone } from "lucide-react";
 import { cacheLife } from "next/cache";
+import Image from "next/image";
 import { siteConfig } from "@/lib/siteConfig";
 import styles from "./Footer.module.css";
 
@@ -48,8 +49,14 @@ export default async function Footer() {
         <div className={`${styles.inner} ${styles.columns}`}>
           <div className={styles.brandColumn}>
             <a className={styles.wordmark} href="#home" aria-label="NEXCRAFT, back to home">
-              <span className={styles.brandMark} aria-hidden="true">N</span>
-              <span>NEXCRAFT</span>
+              <Image
+                className={styles.wordmarkImage}
+                src="/images/brand/nexcraft-logo.png"
+                alt=""
+                width={178}
+                height={61}
+                sizes="178px"
+              />
             </a>
             <p className={styles.tagline}>
               Crafting Digital Experiences.<br />Building What&apos;s Next.

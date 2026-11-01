@@ -20,6 +20,15 @@ export const metadata = {
     default: "NEXCRAFT – Digital Agency",
     template: "%s | NEXCRAFT",
   },
+  icons: {
+    icon: [
+      {
+        url: "/images/brand/nexcraft-favicon.png",
+        type: "image/png",
+        sizes: "48x48",
+      },
+    ],
+  },
   description:
     "NEXCRAFT is an independent digital studio specializing in modern website design, frontend development, UI/UX design, responsive landing pages and website optimization.",
   openGraph: {
