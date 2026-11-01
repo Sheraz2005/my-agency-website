@@ -1,4 +1,5 @@
 import { ArrowUp, ArrowUpRight, MessageCircle, Phone } from "lucide-react";
+import { cacheLife } from "next/cache";
 import { siteConfig } from "@/lib/siteConfig";
 import styles from "./Footer.module.css";
 
@@ -10,7 +11,16 @@ const navigation = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Footer() {
+async function getCurrentYear() {
+  "use cache";
+  cacheLife("hours");
+
+  return new Date().getFullYear();
+}
+
+export default async function Footer() {
+  const currentYear = await getCurrentYear();
+
   return (
     <footer className={styles.footer}>
       <section className={styles.cta} aria-labelledby="footer-cta-title">
@@ -113,7 +123,7 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <div className={`${styles.inner} ${styles.bottomInner}`}>
-          <span>© 2026 NEXCRAFT.</span>
+          <span>© {currentYear} NEXCRAFT.</span>
           <span className={styles.crafted}>Crafted with intention.</span>
           <a className={styles.backToTop} href="#home">
             Back to top <ArrowUp size={14} aria-hidden="true" />

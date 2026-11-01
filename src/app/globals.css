@@ -11,9 +11,10 @@
   --border: #263637;
   --surface: #101819;
 
-  --type-body: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --type-heading: "Space Grotesk", Inter, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  --type-body: var(--font-inter), "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --type-heading: var(--font-space-grotesk), var(--font-inter), "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
   --type-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 

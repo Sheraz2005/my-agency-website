@@ -43,7 +43,7 @@ const contactChannels = [
   },
   {
     label: "LinkedIn",
-    value: siteConfig.contact.linkedinHref,
+    value: "View LinkedIn profile",
     href: siteConfig.contact.linkedinHref,
     icon: Link2,
   },

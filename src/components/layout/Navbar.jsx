@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 
 const navigationItems = [
@@ -15,6 +15,16 @@ const navigationItems = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const desktopBreakpoint = window.matchMedia("(min-width: 701px)");
+    const closeMenuOnDesktop = (event) => {
+      if (event.matches) setMenuOpen(false);
+    };
+
+    desktopBreakpoint.addEventListener("change", closeMenuOnDesktop);
+    return () => desktopBreakpoint.removeEventListener("change", closeMenuOnDesktop);
+  }, []);
 
   return (
     <header className={styles.header}>

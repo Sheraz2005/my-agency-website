@@ -2,31 +2,39 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import styles from "./Portfolio.module.css";
 
 const projects = [
   {
     number: "01",
-    title: "Business Website",
-    category: "Website Development",
-    description: "A modern digital presence for a growing business.",
-    visual: "business",
+    title: "Saffron Bistro",
+    category: "Restaurant Website",
+    description:
+      "A refined restaurant website concept showcasing its menu, dining atmosphere, and essential details.",
+    image: "/images/projects/saffron-bistro.webp",
+    imageAlt:
+      "Saffron Bistro restaurant website concept featuring a plated dish, dining navigation, and warm golden accents.",
   },
   {
     number: "02",
-    title: "Creative Landing Page",
-    category: "UI Development",
+    title: "FitCraft",
+    category: "Fitness Website",
     description:
-      "A visually engaging landing page designed around clarity and conversion.",
-    visual: "landing",
+      "A bold fitness website concept with workout programs and a high-energy visual direction.",
+    image: "/images/projects/fitcraft-fitness.webp",
+    imageAlt:
+      "FitCraft fitness website concept showing a trainer lifting a dumbbell beside workout program content.",
   },
   {
     number: "03",
-    title: "Digital Studio",
-    category: "Frontend Experience",
+    title: "Wanderly",
+    category: "Travel Website",
     description:
-      "An immersive digital experience combining bold typography and thoughtful interactions.",
-    visual: "studio",
+      "An image-led travel website concept highlighting destinations and a trip search experience.",
+    image: "/images/projects/wanderly-travel.webp",
+    imageAlt:
+      "Wanderly travel website concept featuring a mountain destination, seated hiker, and trip search panel.",
   },
 ];
 
@@ -38,93 +46,6 @@ const revealVariants = {
     transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
-function BrowserFrame({ variant }) {
-  return (
-    <div className={styles.browserFrame} aria-hidden="true">
-      <div className={styles.browserBar}>
-        <div className={styles.browserDots}>
-          <i />
-          <i />
-          <i />
-        </div>
-        <span className={styles.addressBar}>nexcraft.studio / concept</span>
-        <span className={styles.browserMenu}>•••</span>
-      </div>
-
-      {variant === "business" && (
-        <div className={styles.businessScreen}>
-          <div className={styles.businessNav}>
-            <span className={styles.businessMark}>FORM / FIELD</span>
-            <span>ABOUT&nbsp;&nbsp;&nbsp; SERVICES&nbsp;&nbsp;&nbsp; CONTACT</span>
-          </div>
-          <div className={styles.businessContent}>
-            <div className={styles.businessCopy}>
-              <span className={styles.previewEyebrow}>A CLEARER DIRECTION</span>
-              <strong>Build around<br />what matters.</strong>
-              <span className={styles.previewLink}>Discover the approach <b>↗</b></span>
-            </div>
-            <div className={styles.businessArt}>
-              <span className={styles.businessArch} />
-              <span className={styles.businessOrb} />
-              <span className={styles.businessArtLine} />
-              <span className={styles.businessArtCaption}>FORM FOLLOWS FEELING — 01</span>
-            </div>
-          </div>
-          <div className={styles.businessFoot}>
-            <span>INDEPENDENT BY DESIGN</span>
-            <span>SCROLL TO EXPLORE ↓</span>
-          </div>
-        </div>
-      )}
-
-      {variant === "landing" && (
-        <div className={styles.landingScreen}>
-          <div className={styles.landingNav}>
-            <span>FORM<span className={styles.landingMark}>+</span></span>
-            <span>THE NEW COLLECTION</span>
-            <span className={styles.landingNavButton}>EXPLORE&nbsp; ↗</span>
-          </div>
-          <div className={styles.landingHero}>
-            <div className={styles.landingCopy}>
-              <span className={styles.previewEyebrow}>MADE FOR WHAT&apos;S NEXT</span>
-              <strong>Make room<br />for more.</strong>
-              <span className={styles.landingCaption}>Thoughtfully made. Ready to move.</span>
-              <span className={styles.landingButton}>Find your next <b>↗</b></span>
-            </div>
-            <div className={styles.landingArt}>
-              <span className={styles.landingOrb} />
-              <span className={styles.landingRing} />
-              <span className={styles.landingLight} />
-            </div>
-          </div>
-          <div className={styles.landingFoot}>01 — 03 <span>BUILT TO STAND APART</span></div>
-        </div>
-      )}
-
-      {variant === "studio" && (
-        <div className={styles.studioScreen}>
-          <div className={styles.studioNav}>
-            <span className={styles.studioLogo}>N°<i>FORM</i></span>
-            <span>SELECTED WORK&nbsp;&nbsp;&nbsp; STUDIO&nbsp;&nbsp;&nbsp; CONTACT</span>
-          </div>
-          <div className={styles.studioCenter}>
-            <span className={styles.studioNote}>CREATIVE PRACTICE — VISUAL SYSTEM</span>
-            <strong>IN<br /><span>FORM</span></strong>
-            <div className={styles.studioShape}>
-              <span />
-            </div>
-            <span className={styles.studioIndex}>DESIGN THAT MOVES WITH YOU</span>
-          </div>
-          <div className={styles.studioFoot}>
-            <span>INDEPENDENT DIGITAL STUDIO</span>
-            <span>SCROLL TO EXPLORE ↓</span>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 export default function Portfolio() {
   const reduceMotion = useReducedMotion();
@@ -163,8 +84,14 @@ export default function Portfolio() {
                 whileHover={reduceMotion ? undefined : { y: -4 }}
                 transition={{ duration: 0.24, ease: "easeOut" }}
               >
-                <div className={styles.mockupWrap}>
-                  <BrowserFrame variant={project.visual} />
+                <div className={styles.projectImageWrap}>
+                  <Image
+                    className={styles.projectImage}
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(max-width: 680px) 90vw, (max-width: 1200px) 50vw, 660px"
+                  />
                 </div>
                 <span className={styles.previewGlow} />
                 <span className={styles.conceptBadge}>

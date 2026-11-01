@@ -122,6 +122,12 @@
   box-shadow: 0 24px 48px rgb(0 0 0 / 28%);
 }
 
+@media (min-width: 701px) {
+  .mobileNav {
+    display: none;
+  }
+}
+
 .mobileNav a {
   display: flex;
   min-height: 58px;
