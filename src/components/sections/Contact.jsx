@@ -83,6 +83,7 @@ const initialValues = {
   company: "",
   service: "",
   projectDetails: "",
+  website: "",
 };
 
 export default function Contact() {
@@ -90,22 +91,24 @@ export default function Contact() {
   const formRef = useRef(null);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [validated, setValidated] = useState(false);
+  const [submissionState, setSubmissionState] = useState("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
     setValues((current) => ({ ...current, [name]: value }));
     setErrors((current) => ({ ...current, [name]: undefined }));
-    setValidated(false);
+    setSubmitError("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const nextErrors = validateFields(values);
     setErrors(nextErrors);
+    setSubmitError("");
 
     if (Object.keys(nextErrors).length > 0) {
-      setValidated(false);
       requestAnimationFrame(() => {
         formRef.current
           ?.querySelector('[aria-invalid="true"]')
@@ -114,7 +117,27 @@ export default function Contact() {
       return;
     }
 
-    setValidated(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        setSubmitError(result.error || "We could not send your enquiry. Please try again.");
+        return;
+      }
+
+      setSubmissionState("success");
+    } catch {
+      setSubmitError("We could not send your enquiry. Check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -203,27 +226,38 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: reduceMotion ? 0 : 0.66, delay: reduceMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
-          {validated ? (
+          {submissionState === "success" ? (
             <div className={styles.successState} role="status" aria-live="polite">
               <span className={styles.successIcon}>
                 <Check size={21} strokeWidth={1.8} aria-hidden="true" />
               </span>
-              <p className={styles.formEyebrow}>DETAILS VALIDATED</p>
-              <h3>Your project details are ready.</h3>
+              <p className={styles.formEyebrow}>ENQUIRY SENT</p>
+              <h3>Your enquiry has been sent.</h3>
               <p>
-                Email delivery is not connected yet, so your enquiry has not been
-                sent. You can return and edit your details below.
+                Thanks for sharing your project details. We&apos;ll follow up at {values.email}.
               </p>
               <button
                 className={styles.editButton}
                 type="button"
-                onClick={() => setValidated(false)}
+                onClick={() => setSubmissionState("idle")}
               >
-                Edit your enquiry <ArrowUpRight size={15} aria-hidden="true" />
+                Update your details <ArrowUpRight size={15} aria-hidden="true" />
               </button>
             </div>
           ) : (
             <form className={styles.form} ref={formRef} noValidate onSubmit={handleSubmit}>
+              <div className={styles.honeypot} aria-hidden="true">
+                <label htmlFor="website">Leave this field empty</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={values.website}
+                  onChange={handleChange}
+                />
+              </div>
               <div className={styles.formHeading}>
                 <span className={styles.formEyebrow}>PROJECT ENQUIRY</span>
                 <span className={styles.formIndex}>01 — 05</span>
@@ -302,11 +336,13 @@ export default function Contact() {
               </div>
 
               <div className={styles.formActions}>
-                <button className={styles.submitButton} type="submit">
-                  Send Project Enquiry <Send size={15} strokeWidth={1.7} aria-hidden="true" />
+                <button className={styles.submitButton} type="submit" disabled={isSubmitting} aria-busy={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Project Enquiry"}
+                  <Send size={15} strokeWidth={1.7} aria-hidden="true" />
                 </button>
+                {submitError && <p className={styles.error} role="alert">{submitError}</p>}
                 <p className={styles.deliveryNote}>
-                  Form delivery is not connected yet. Details are validated in this preview and are not sent.
+                  Your enquiry will be sent securely to our team.
                 </p>
               </div>
             </form>

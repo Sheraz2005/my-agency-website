@@ -27,12 +27,28 @@ export const metadata = {
     description:
       "Thoughtful design. Modern frontend development. Exceptional digital experiences.",
     type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "NEXCRAFT — Crafting Digital Experiences",
     description:
       "Thoughtful design. Modern frontend development. Exceptional digital experiences.",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+      },
+    ],
   },
 };
 

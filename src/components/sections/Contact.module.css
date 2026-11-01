@@ -187,6 +187,16 @@ a.channel:hover .channelArrow {
     inset 0 1px 0 rgb(255 255 255 / 3%);
 }
 
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .formHeading {
   display: flex;
   align-items: center;
@@ -340,6 +350,12 @@ a.channel:hover .channelArrow {
   transform: translateY(-2px);
   border-color: #a0d5ce;
   background: #a0d5ce;
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
 }
 
 .submitButton:focus-visible,
