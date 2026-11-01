@@ -15,7 +15,10 @@ const spaceGrotesk = localFont({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
 export const metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
     default: "NEXCRAFT – Digital Agency",
     template: "%s | NEXCRAFT",
